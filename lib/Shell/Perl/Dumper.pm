@@ -36,39 +36,29 @@ our @ISA = qw(Shell::Perl::Dumper); # to get a new() for free
 
 # XXX make a Data::Dump object an instance variable
 
-sub require_data_dump {
-    require Data::Dump;
+sub _dump_code_filter {
+    my ($ctx, $object_ref) = @_;
+    return undef unless $ctx->is_code;
 
-    # XXX hack Data::Dump as it does not dump code
-    my $_dump = \&Data::Dump::_dump; # original
-
-    no warnings 'redefine';
-    *Data::Dump::_dump = sub {
-        my $val = $_[0];
-        my $out = $_dump->(@_);
-        if ( $out eq 'sub { "???" }' ) {
-            require B::Deparse;
-            return 'sub ' . (B::Deparse->new)->coderef2text($val);
-        } else {
-            return $out
-        }
-    }
+    require B::Deparse;
+    my $code = 'sub ' . (B::Deparse->new)->coderef2text($object_ref);
+    return { dump => $code };
 }
 
 sub is_available {
-    return eval { require_data_dump; 1 };
+    return eval { require Data::Dump::Filtered; 1 };
 }
 
 sub dump_scalar {
     shift;
-    require Data::Dump; 
-    return Data::Dump::dump(shift) . "\n";
+    require Data::Dump::Filtered;
+    return Data::Dump::Filtered::dump_filtered(shift, \&_dump_code_filter) . "\n";
 }
 
 sub dump_list {
     shift;
-    require Data::Dump; 
-    return Data::Dump::dump(@_) . "\n";
+    require Data::Dump::Filtered;
+    return Data::Dump::Filtered::dump_filtered(@_, \&_dump_code_filter) . "\n";
 }
 
 package Shell::Perl::Data::Dumper;
