@@ -1,13 +1,16 @@
 Revision history for Perl extension Shell::Perl.
 
-0.018   Oct 25, 2008
+0.0019  Mar 9, 2011
+        - Dumper updated to work with Data::Dump 1.16+
+
+0.0018  Oct 25, 2008
         - fix t/11version.t to deal with IPC::Cmd $err
           as an error message (undef on success) rather
           than an error code (0 on success)
           [Thanks, Andreas, for spotting that]
           http://rt.cpan.org/Ticket/Display.html?id=40157
 
-0.017   Mar  9, 2008
+0.0017  Mar  9, 2008
         - assume this is not supposed to work for Perls
           under 5.6.0
         - cope with noisy 5.6 blib at t/20expect_quit.t
@@ -16,7 +19,7 @@ Revision history for Perl extension Shell::Perl.
         - added IPC::Cmd and Test::Deep as prerequisites 
           for testing
 
-0.016   Mar  3, 2008
+0.0016  Mar  3, 2008
         - quit is now a method
         - history is now persistent across sections
           (should work with T::RL::Gnu and T::RL::Perl)

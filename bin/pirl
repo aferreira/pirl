@@ -7,7 +7,7 @@ use warnings;
 # /Id: pirl 1124 2007-01-25 19:36:07Z me / # don't erase that for now
 # $Id: /iperl/bin/pirl 2321 2008-03-09T16:47:36.686169Z a.r.ferreira@gmail.com  $
 
-our $VERSION = '0.0017';
+our $VERSION = '0.0019';
 
 use Shell::Perl ();
 Shell::Perl->run_with_args;
@@ -76,7 +76,7 @@ Caio Marcelo, E<lt>cmarcelo@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2007, 2008 by Adriano R. Ferreira
+Copyright (C) 2007–2011 by Adriano R. Ferreira
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

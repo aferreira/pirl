@@ -7,7 +7,7 @@ use warnings;
 
 # $Id$
 
-our $VERSION = '0.0017';
+our $VERSION = '0.0019';
 
 use base qw(Class::Accessor); # to get a new() for free
 
@@ -396,7 +396,7 @@ Caio Marcelo, E<lt>cmarcelo@gmail.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2007 by Adriano R. Ferreira
+Copyright (C) 2007–2011 by Adriano R. Ferreira
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
