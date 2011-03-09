@@ -1,6 +1,6 @@
 #perl -T
 
-use Test::More 'no_plan' => 1;
+use Test::More 'no_plan';
 
 BEGIN { use_ok('Shell::Perl'); }
 
