@@ -1,0 +1,84 @@
+#!/usr/bin/perl
+
+use 5.006;
+use strict;
+use warnings;
+
+# /Id: pirl 1124 2007-01-25 19:36:07Z me / # don't erase that for now
+# $Id: /iperl/bin/pirl 2321 2008-03-09T16:47:36.686169Z a.r.ferreira@gmail.com  $
+
+our $VERSION = '0.0017';
+
+use Shell::Perl ();
+Shell::Perl->run_with_args;
+
+__END__
+
+=head1 NAME
+
+pirl - A read-eval-print loop in Perl (see Shell::Perl)
+
+=head1 SYNOPSIS
+
+    pirl
+    pirl --noornaments
+
+    pirl --version
+    pirl -v
+
+=head1 EXAMPLE SESSION
+
+    $ pirl
+    Welcome to the Perl shell. Type ':help' for more information
+
+
+    pirl @> 1+1
+    2
+
+    pirl @> use YAML qw(Load Dump);
+    ()
+
+    pirl @> $data = Load("--- { a: 1, b: [ 1, 2, 3] }\n");
+    { a => 1, b => [1, 2, 3] }
+
+    pirl @> $var = 'a 1 2 3'; $var =~ /(\w+) (\d+) (\d+)/
+    ("a", 1, 2)
+
+    pirl @> :q
+
+=head1 DESCRIPTION
+
+This script is the command-line interface to C<Shell::Perl>
+which does it all.
+
+By now, read the fine details at C<Shell::Perl> documentation.
+
+=head1 OPTIONS
+
+    --ornaments - turn on terminal ornaments (default)
+    --noornaments - turn off terminal organments
+
+    --version, -v - prints version info and exits with 0
+
+=head1 SEE ALSO
+
+Shell::Perl
+
+=head1 BUGS
+
+Please report bugs via CPAN RT L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Shell-Perl>.
+
+=head1 AUTHOR
+
+Adriano R. Ferreira, E<lt>ferreira@cpan.orgE<gt>
+
+Caio Marcelo, E<lt>cmarcelo@cpan.orgE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2007, 2008 by Adriano R. Ferreira
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

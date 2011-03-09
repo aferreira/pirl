@@ -1,0 +1,29 @@
+--- #YAML:1.0
+name:               Shell-Perl
+version:            0.0018
+abstract:           A read-eval-print loop in Perl 
+author:
+    - A. R. Ferreira <ferreira@cpan.org>
+license:            perl
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
+requires:
+    Class::Accessor:  0
+    File::Basename:   0
+    File::HomeDir:    0
+    File::Slurp:      0
+    Getopt::Long:     0
+    IPC::Cmd:         0
+    Path::Class:      0
+    Term::ReadLine:   0
+    Test::Deep:       0
+    Test::More:       0
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.46
+meta-spec:
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4
