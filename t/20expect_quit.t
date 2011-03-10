@@ -18,7 +18,7 @@ for my $quit_command ( ':quit', ':q', ':exit', ':x', 'exit', 'quit' ) {
 
     expect_like(
         qr/\A
-           (?: Using .*? blib $ )?   # cope with noisy 5.6 blib
+           (?: Using .*? blib \n )?   # cope with noisy 5.6 blib
            Welcome
           /msx,
         "welcome message"
