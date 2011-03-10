@@ -11,5 +11,6 @@ for my $switch ( '-v', '--version' ) {
     ok( $ok, "'pirl $switch' run ok" );
     ok( !$err, 'no error');
     cmp_deeply( $out_buf, [ re(qr/\AThis is pirl/) ], 'printed version info' );
-    cmp_deeply( $err_buf, [], 'no output to STDERR' );
+    cmp_deeply( $err_buf, [], 'no output to STDERR' )
+      or diag("err_buf: ", $err_buf);
 }
