@@ -8,7 +8,7 @@ use warnings;
 # /Id: Perl.pm 1131 2007-01-27 17:43:35Z me / # don't erase that for now
 # $Id: /iperl/lib/Shell/Perl.pm 2317 2008-03-09T16:22:00.577930Z a.r.ferreira@gmail.com  $
 
-our $VERSION = '0.0019';
+our $VERSION = '0.0020';
 
 use base qw(Class::Accessor); # soon use base qw(Shell::Base);
 Shell::Perl->mk_accessors(qw( out_type dumper context package term ornaments )); # XXX use_strict

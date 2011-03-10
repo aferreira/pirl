@@ -1,5 +1,9 @@
 Revision history for Perl extension Shell::Perl.
 
+0.0020  Mar 10, 2011
+        - no real change
+        - Test fixes for keeping 5.6 happy
+
 0.0019  Mar 9, 2011
         - Dumper updated to work with Data::Dump 1.16+
 
