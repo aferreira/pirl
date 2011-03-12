@@ -1,5 +1,9 @@
 Revision history for Perl extension Shell::Perl.
 
+0.0021  Mar 12, 2011
+        - no real change
+        - New test fix for happy 5.6 testing
+
 0.0020  Mar 10, 2011
         - no real change
         - Test fixes for keeping 5.6 happy
