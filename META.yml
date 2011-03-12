@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Shell-Perl
-version:            0.0019
+version:            0.0022
 abstract:           A read-eval-print loop in Perl 
 author:
     - A. R. Ferreira <ferreira@cpan.org>
@@ -21,11 +21,18 @@ requires:
     Term::ReadLine:   0
     Test::Deep:       0
     Test::More:       0
+resources:
+    repository:  http://github.com/aferreira/pirl
 no_index:
     directory:
         - t
         - inc
-generated_by:       ExtUtils::MakeMaker version 6.50
+generated_by:       ExtUtils::MakeMaker version 6.56
 meta-spec:
     url:      http://module-build.sourceforge.net/META-spec-v1.4.html
     version:  1.4
+recommends:
+    Test::Expect:         0
+    Test::Pod:            0
+    Test::Pod::Coverage:  0
+    Test::Script:         0
