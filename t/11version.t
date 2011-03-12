@@ -11,6 +11,8 @@ for my $switch ( '-v', '--version' ) {
     ok( $ok, "'pirl $switch' run ok" );
     ok( !$err, 'no error');
     cmp_deeply( $out_buf, [ re(qr/\AThis is pirl/) ], 'printed version info' );
-    cmp_deeply( $err_buf, [], 'no output to STDERR' )
-      or diag("err_buf: ", $err_buf);
+    my $NO_STDERR_OUTPUT = ($] < 5.008)
+      ? [qr/Using .* lib \n/msx]   # cope with noisy 5.6 blib
+      : [];
+    cmp_deeply( $err_buf, $NO_STDERR_OUTPUT, 'no output to STDERR' );
 }
