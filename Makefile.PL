@@ -13,9 +13,9 @@ WriteMakefile(
         Class::Accessor => 0,
         Getopt::Long    => 0,
 
-		  File::Slurp => 0,
-		  File::HomeDir => 0,
-		  Path::Class => 0,
+        File::Slurp => 0,
+        File::HomeDir => 0,
+        Path::Class => 0,
 
         # test requires
         'Test::More'      => 0,
@@ -32,6 +32,20 @@ WriteMakefile(
     ($EUMM_VERSION >= 6.31 ? (
         LICENSE => 'perl', 
     ) : ()),
+    ($EUMM_VERSION > 6.4501 ? (
+        META_MERGE => {
+            recommends => {
+                # optional tests
+                'Test::Pod'           => 0,
+                'Test::Pod::Coverage' => 0,
+                'Test::Script'        => 0,
+                'Test::Expect'        => 0,
+            },
+            resources => {
+                repository => 'http://github.com/aferreira/pirl',
+            },
+        },
+    ) : ()),
 
 );
 
@@ -42,7 +56,3 @@ WriteMakefile(
 #   - Data::Dumper
 #   - Data::Dump::Streamer
 #
-#   - Test::Pod 
-#   - Test::Pod::Coverage
-#   - Test::Script
-#   - Test::Expect
