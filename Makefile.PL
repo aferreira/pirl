@@ -1,5 +1,5 @@
 
-use 5.006;
+use 5.008;
 use ExtUtils::MakeMaker;
 
 my $EUMM_VERSION = eval $ExtUtils::MakeMaker::VERSION;
@@ -26,11 +26,11 @@ WriteMakefile(
     EXE_FILES => [ 'bin/pirl' ],
 
     ($] >= 5.005 ? (
-        ABSTRACT_FROM  => 'lib/Shell/Perl.pm', 
+        ABSTRACT_FROM  => 'lib/Shell/Perl.pm',
         AUTHOR         => 'A. R. Ferreira <ferreira@cpan.org>',
     ) : ()),
     ($EUMM_VERSION >= 6.31 ? (
-        LICENSE => 'perl', 
+        LICENSE => 'perl',
     ) : ()),
     ($EUMM_VERSION > 6.4501 ? (
         META_MERGE => {

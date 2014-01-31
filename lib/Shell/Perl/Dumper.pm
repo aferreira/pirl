@@ -1,7 +1,6 @@
 
 package Shell::Perl::Dumper;
 
-use 5;
 use strict;
 use warnings;
 

@@ -1,7 +1,6 @@
 
 package Shell::Perl;
 
-use 5.006;
 use strict;
 use warnings;
 

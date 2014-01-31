@@ -1,5 +1,10 @@
 Revision history for Perl extension Shell::Perl.
 
+1.23  Fri Jan 14:05:00 2014
+	- Update Makefile.PL from 'use 5.006' to 'use 5.008' as per RT#43117. Thanx ANDK.
+	- Fix dates in this file.
+	- Change version numbering in this file from 0.0023 to 1.23.
+
 0.0022  Mar 12, 2011
         - no real change
         - Fix test again for 5.6 sake
@@ -28,8 +33,8 @@ Revision history for Perl extension Shell::Perl.
           under 5.6.0
         - cope with noisy 5.6 blib at t/20expect_quit.t
           (illustrated by test report http://www.nntp.perl.org/group/perl.cpan.testers/2008/03/msg1099937.html)
-        - pirl now accepts switches --version and -v 
-        - added IPC::Cmd and Test::Deep as prerequisites 
+        - pirl now accepts switches --version and -v
+        - added IPC::Cmd and Test::Deep as prerequisites
           for testing
 
 0.0016  Mar  3, 2008
@@ -57,7 +62,7 @@ Revision history for Perl extension Shell::Perl.
           no docs by now (try it with ":set out DDS")
 
 0.0012  Jun 21, 2007
-        - added an experimental "dump history" command 
+        - added an experimental "dump history" command
           (RT #26973, by mgrimes)
         - hopefully get rid of the double newline in eval output
 
@@ -82,7 +87,7 @@ Revision history for Perl extension Shell::Perl.
           dumper according to availability
         - fix bug: inline contexts (like #scalar)
           were not being respected for printing
-        - Makefile.PL required ExtUtils::MakeMaker 6.31 
+        - Makefile.PL required ExtUtils::MakeMaker 6.31
           and we are more tolerant now (thanks, Lorn)
         - now the right line number is used at
           warnings and errors (Lorn again)
