@@ -1,13 +1,11 @@
-
 package Shell::Perl::Dumper;
 
-use 5;
 use strict;
 use warnings;
 
 # $Id$
 
-our $VERSION = '0.0019';
+our $VERSION = '0.0023';
 
 use base qw(Class::Accessor); # to get a new() for free
 
@@ -74,7 +72,7 @@ sub is_available {
 
 sub dump_scalar {
     shift;
-    require Data::Dumper; 
+    require Data::Dumper;
     local $Data::Dumper::Deparse = 1;
     return Data::Dumper->Dump([shift], [qw($var)]);
 }
@@ -82,7 +80,7 @@ sub dump_scalar {
 sub dump_list {
     #goto &dump_scalar if @_==2; # fallback to dump_scalar if only one
     shift;
-    require Data::Dumper; 
+    require Data::Dumper;
     local $Data::Dumper::Deparse = 1;
     return Data::Dumper->Dump([[@_]], [qw(*var)]);
 }
@@ -138,14 +136,14 @@ sub is_available {
 
 sub dump_scalar {
     shift;
-    require Data::Dump::Streamer; 
+    require Data::Dump::Streamer;
     return Data::Dump::Streamer::Dump(shift)->Names('$var')->Out;
 }
 
 sub dump_list {
     #goto &dump_scalar if @_==2; # fallback to dump_scalar if only one
     shift;
-    require Data::Dump::Streamer; 
+    require Data::Dump::Streamer;
     return Data::Dump::Streamer::Dump([@_])->Names('*var')->Out;
 }
 
@@ -155,6 +153,10 @@ sub dump_list {
 # svn:eol-style LF
 
 __END__
+
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -177,13 +179,13 @@ for you to pretty-print these answers just the way you want.
 By default, C<pirl> will try to convert the results
 via C<Data::Dump>. That means the output will be Perl
 code that may be run to get the data structure again.
-Alternatively, the shell may use C<Data::Dumper> 
+Alternatively, the shell may use C<Data::Dumper>
 or C<Data::Dump::Streamer>
 with almost the same result with respect to the
 representation as Perl code. (But the output of the
 modules differ enough for sufficiently complex data.)
 
-Other options are to set the output to produce YAML 
+Other options are to set the output to produce YAML
 or a plain simple-minded solution which basically
 turns the result to string via simple interpolation.
 
@@ -238,7 +240,7 @@ an installation problem.
 This is the algorithm used by L<Shell::Perl> XXX
 XXX XXX
 
-    1. 
+    1.
 
 =back
 

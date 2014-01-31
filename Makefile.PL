@@ -1,52 +1,56 @@
+use strict;
+use warnings;
 
-use 5.006;
+use 5.008;
 use ExtUtils::MakeMaker;
 
 my $EUMM_VERSION = eval $ExtUtils::MakeMaker::VERSION;
 
-WriteMakefile(
-    NAME => 'Shell::Perl',
-    VERSION_FROM => 'lib/Shell/Perl.pm',
-    PREREQ_PM => {
-        Term::ReadLine  => 0,
-        File::Basename  => 0,
-        Class::Accessor => 0,
-        Getopt::Long    => 0,
-
-        File::Slurp => 0,
-        File::HomeDir => 0,
-        Path::Class => 0,
-
-        # test requires
-        'Test::More'      => 0,
-        'Test::Deep'      => 0,
-        'IPC::Cmd'        => 0,
-
+WriteMakefile
+(
+	NAME         => 'Shell::Perl',
+	VERSION_FROM => 'lib/Shell/Perl.pm',
+	EXE_FILES    => [ 'bin/pirl' ],
+	PREREQ_PM    =>
+	{
+		'Class::Accessor' => 0,
+		'File::Basename'  => 0,
+		'File::HomeDir'   => 0,
+		'File::Slurp'     => 0,
+		'Getopt::Long'    => 0,
+		'IPC::Cmd'	      => 0,
+		'Path::Class'     => 0,
+		'Test::Deep'      => 0,
+		'Test::More'      => 0,
+		'Term::ReadLine'  => 0,
     },
-    EXE_FILES => [ 'bin/pirl' ],
 
-    ($] >= 5.005 ? (
-        ABSTRACT_FROM  => 'lib/Shell/Perl.pm', 
-        AUTHOR         => 'A. R. Ferreira <ferreira@cpan.org>',
-    ) : ()),
-    ($EUMM_VERSION >= 6.31 ? (
-        LICENSE => 'perl', 
-    ) : ()),
-    ($EUMM_VERSION > 6.4501 ? (
-        META_MERGE => {
-            recommends => {
-                # optional tests
-                'Test::Pod'           => 0,
-                'Test::Pod::Coverage' => 0,
-                'Test::Script'        => 0,
-                'Test::Expect'        => 0,
-            },
-            resources => {
-                repository => 'http://github.com/aferreira/pirl',
-            },
-        },
-    ) : ()),
+	($] >= 5.005 ? (
+		ABSTRACT_FROM  => 'lib/Shell/Perl.pm',
+		AUTHOR	 => 'A. R. Ferreira <ferreira@cpan.org>',
+	) : ()),
 
+	($EUMM_VERSION >= 6.31 ? (
+		LICENSE => 'perl',
+	) : ()),
+
+	($EUMM_VERSION > 6.4501 ? (
+	META_MERGE =>
+	{
+		recommends =>
+		{
+			# optional tests
+			'Test::Pod'	   => 0,
+			'Test::Pod::Coverage' => 0,
+			'Test::Script'	=> 0,
+			'Test::Expect'	=> 0,
+		},
+		resources =>
+		{
+			repository => 'http://github.com/aferreira/pirl',
+	 	},
+	},
+	) : ()),
 );
 
 # recommended:

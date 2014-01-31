@@ -1,14 +1,12 @@
-
 package Shell::Perl;
 
-use 5.006;
 use strict;
 use warnings;
 
 # /Id: Perl.pm 1131 2007-01-27 17:43:35Z me / # don't erase that for now
 # $Id: /iperl/lib/Shell/Perl.pm 2317 2008-03-09T16:22:00.577930Z a.r.ferreira@gmail.com  $
 
-our $VERSION = '0.0022';
+our $VERSION = '0.0023';
 
 use base qw(Class::Accessor); # soon use base qw(Shell::Base);
 Shell::Perl->mk_accessors(qw( out_type dumper context package term ornaments )); # XXX use_strict
@@ -24,7 +22,7 @@ use Shell::Perl::Dumper;
 
 sub new {
     my $self = shift;
-    my $sh = $self->SUPER::new({ 
+    my $sh = $self->SUPER::new({
                            context => 'list', # print context
                            @_ });
     $sh->_init;
@@ -53,7 +51,7 @@ sub _init {
         if ($dumper_for{$format}->is_available) {
             #$self->print("format: $format\n");
             $self->set_out($format);
-            last 
+            last
         } # XXX this is not working 100% - and I have no clue about it
     }
 
@@ -74,7 +72,7 @@ sub print {
 ## # XXX remove: code and docs
 ## sub out {
 ##     my $self = shift;
-## 
+##
 ##     # XXX I want to improve this: preferably with an easy way to add dumpers
 ##     if ($self->context eq 'scalar') {
 ##         $self->print($self->dumper->dump_scalar(shift), "\n");
@@ -85,14 +83,14 @@ sub print {
 
 # XXX I want to improve this: preferably with an easy way to add dumpers
 
-=begin private 
+=begin private
 
 =item B<_print_scalar>
 
     $sh->_print_scalar($answer);
 
 That corresponds to the 'print' in the read-eval-print
-loop (in scalar context). It outputs the evaluation result 
+loop (in scalar context). It outputs the evaluation result
 after passing it through the current dumper.
 
 =end private
@@ -104,14 +102,14 @@ sub _print_scalar { # XXX make public, document
     $self->print($self->dumper->dump_scalar(shift));
 }
 
-=begin private 
+=begin private
 
 =item B<_print_scalar>
 
     $sh->_print_list(@answers);
 
 That corresponds to the 'print' in the read-eval-print
-loop (in list context). It outputs the evaluation result 
+loop (in list context). It outputs the evaluation result
 after passing it through the current dumper.
 
 =end private
@@ -136,7 +134,7 @@ sub set_out {
     if (!defined $dumper_class) {
         $self->_warn("unknown dumper $type");
         return;
-    } 
+    }
     if ($dumper_class->is_available) {
         $self->dumper($dumper_class->new);
         $self->out_type($type);
@@ -279,7 +277,7 @@ sub run {
     my $self = shift;
     my $shell_name = _shell_name;
     $self->term( my $term = $self->_new_term( $shell_name ) );
-    $term->ornaments($self->ornaments); # XXX 
+    $term->ornaments($self->ornaments); # XXX
     my $prompt = "$shell_name > ";
 
     print "Welcome to the Perl shell. Type ':help' for more information\n\n";
@@ -351,7 +349,7 @@ sub quit {
 }
 
 sub run_with_args {
-    my $self = shift; 
+    my $self = shift;
 
     # XXX do something with @ARGV (Getopt)
     my %options = ( ornaments => 1 );
@@ -389,10 +387,10 @@ sub dump_history {
     }
 
     if ( $file ) {
-        open( my $fh, ">>", $file ) 
+        open( my $fh, ">>", $file )
             or do { warn "Couldn't open '$file' for history dump\n"; return; };
-        for ( $self->term->GetHistory ) { 
-            print $fh $_, "\n"; 
+        for ( $self->term->GetHistory ) {
+            print $fh $_, "\n";
         }
         close $fh;
 
@@ -407,7 +405,7 @@ sub dump_history {
 1;
 
 # OUTPUT Data::Dump, Data::Dumper, YAML, others
-# document: use a different package when eval'ing 
+# document: use a different package when eval'ing
 # reset the environment
 # implement shell commands (:quit, :set, :exit, etc.)
 # how to implement array contexts?
@@ -438,9 +436,13 @@ sub dump_history {
 
 __END__
 
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
-Shell::Perl - A read-eval-print loop in Perl 
+Shell::Perl - A read-eval-print loop in Perl
 
 =head1 SYNOPSYS
 
@@ -449,7 +451,7 @@ Shell::Perl - A read-eval-print loop in Perl
 
 =head1 DESCRIPTION
 
-This is the implementation of a command-line interpreter for Perl. 
+This is the implementation of a command-line interpreter for Perl.
 I wrote this because I was tired of using B<irb> when
 needing a calculator with a real language within. Ah,
 that and because it was damn easy to write it.
@@ -586,7 +588,7 @@ Starts the read-eval-print loop after reading
 options from C<@ARGV>. It is a class method.
 
 If an option B<-v> or B<--version> is provided,
-instead of starting the REPL, it prints 
+instead of starting the REPL, it prints
 the script identification and exits with 0.
 
    $ pirl -v
@@ -608,7 +610,7 @@ so that C<Shell::Perl->run_with_args> is kind of:
     @answer = $sh->eval($exp);
 
 Evaluates the user input given in C<$exp> as Perl code and returns
-the result. That is the 'eval' part of the 
+the result. That is the 'eval' part of the
 read-eval-print loop.
 
 =item B<print>
@@ -616,7 +618,7 @@ read-eval-print loop.
     $sh->print(@args);
 
 Prints a list of args at the output stream currently used
-by the shell. 
+by the shell.
 
 =item B<help>
 
@@ -672,7 +674,7 @@ the evaluation results. Actually must be one of
     $prompt = $sh->prompt_title;
 
 Returns the current prompt which changes with
-executable name and context. For example, 
+executable name and context. For example,
 "pirl @>", "pirl $>", and "pirl >".
 
 =item B<quit>
@@ -699,8 +701,8 @@ saves the terminal history file.
 
 =head2 ABOUT EVALUATION
 
-When the statement read is evaluated, this is done 
-at a different package, which is C<Shell::Perl::sandbox> 
+When the statement read is evaluated, this is done
+at a different package, which is C<Shell::Perl::sandbox>
 by default.
 
 So:
