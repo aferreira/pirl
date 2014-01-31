@@ -1,4 +1,3 @@
-
 package Shell::Perl::Dumper;
 
 use strict;
@@ -6,7 +5,7 @@ use warnings;
 
 # $Id$
 
-our $VERSION = '0.0019';
+our $VERSION = '1.23';
 
 use base qw(Class::Accessor); # to get a new() for free
 
