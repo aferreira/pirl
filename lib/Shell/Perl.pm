@@ -769,10 +769,6 @@ Those are
     Is there a Perl shell?
     http://perldoc.perl.org/perlfaq3.html#How-can-I-use-Perl-interactively%3f
 
-An extra list of Perl shells can be found here:
-
-    http://www.focusresearch.com/gregor/document/psh-1.1.html#other_perl_shells
-
 =head1 BUGS
 
 It is a one-line evaluator by now.
