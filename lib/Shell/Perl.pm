@@ -9,6 +9,7 @@ use base qw(Class::Accessor); # soon use base qw(Shell::Base);
 Shell::Perl->mk_accessors(qw( out_type dumper context package term ornaments library )); # XXX use_strict
 
 use lib ();
+use Getopt::Long qw(:config no_auto_abbrev no_ignore_case bundling_values);
 
 use Term::ReadLine;
 use Shell::Perl::Dumper;
