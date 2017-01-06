@@ -783,6 +783,24 @@ Caio Marcelo, E<lt>cmarceloE<64>gmail.comE<gt>
 
 Ron Savage, E<lt>ronE<64>savage.net.auE<gt>
 
+=head1 SEE ALSO
+
+=over 4
+
+=item *
+
+L<Devel::REPL>
+
+=item *
+
+L<Reply>
+
+=item *
+
+L<A comparison of various REPLs|http://shadow.cat/blog/matt-s-trout/mstpan-17/>
+
+=back
+
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (C) 2007–2011 by Adriano R. Ferreira
