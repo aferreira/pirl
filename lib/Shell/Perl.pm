@@ -6,7 +6,16 @@ use warnings;
 our $VERSION = '0.0023';
 
 use base qw(Class::Accessor); # soon use base qw(Shell::Base);
-Shell::Perl->mk_accessors(qw( out_type dumper context package term ornaments library )); # XXX use_strict
+Shell::Perl->mk_accessors(qw(
+    out_type
+    dumper
+    context
+    package
+    perl_version
+    term
+    ornaments
+    library
+)); # XXX use_strict
 
 use lib ();
 use Getopt::Long qw(:config no_auto_abbrev no_ignore_case bundling_values);
@@ -24,6 +33,7 @@ sub new {
     my $self = shift;
     my $sh = $self->SUPER::new({
                            context => 'list', # print context
+                           perl_version => $],
                            @_ });
     $sh->_init;
     return $sh;
@@ -188,6 +198,22 @@ sub set_package {
     }
 }
 
+sub set_perl_version {
+    my $self = shift;
+    my $version = shift;
+
+    if (!defined $version) {
+        $self->perl_version($]);
+    }
+    elsif ($version eq q{''} || $version eq q{""}) {
+        $self->perl_version('');
+    }
+    else {
+        # XXX check
+        $self->perl_version($version);
+    }
+}
+
 use constant HELP =>
     <<'HELP';
 Shell commands:           (begin with ':')
@@ -195,6 +221,7 @@ Shell commands:           (begin with ':')
   :set out (D|DD|DDS|Y|P) - setup the output format
   :set ctx (scalar|list|void|s|l|v|$|@|_) - setup the eval context
   :set package <name> - set package in which shell eval statements
+  :set perl_version <version> - set perl version to eval statements
   :reset - reset the environment
   :dump history <file> - (experimental) print the history to STDOUT or a file
   :h(elp) - get this help screen
@@ -298,6 +325,7 @@ sub run {
             $self->set_out($1) if /^:set out (\S+)/;
             $self->set_ctx($1) if /^:set ctx (\S+)/;
             $self->set_package($1) if /^:set package (\S+)/;
+            $self->set_perl_version($1) if /^:set perl_version(?: (\S+))?/;
             $self->reset if /^:reset/;
             $self->help if /^:h(elp)?/;
             $self->dump_history($1) if /^:dump history(?:\s+(\S*))?/;
@@ -328,16 +356,26 @@ sub run {
 
 }
 
+sub _package_stmt {
+    my $package = shift->package;
+    ("package $package");
+}
+
+sub _use_perl_stmt {
+    my $perl_version = shift->perl_version;
+    $perl_version ? ("use $perl_version") : ();
+}
+
 # $shell->eval($exp)
 sub eval {
     my $self = shift;
     my $exp = shift;
-    my $package = $self->package;
 
-    my $preamble = join "\n", (
-        "package $package;", # XXX
-        "use $];",
-        "no strict qw(vars subs);",
+    my $preamble = join ";\n", (
+        $self->_package_stmt,
+        $self->_use_perl_stmt,
+        "no strict qw(vars subs)",
+        "",    # for the trailing ;
     );
 
     # XXX gotta restore $_, etc.
@@ -559,6 +597,23 @@ of the expression.
     pirl @> $var = 'a 1 2 3'; $var =~ /(\w+) (\d+) (\d+)/ #scalar
     1
 
+=item :set perl_version
+
+Changes the perl version (and current feature bundle)
+used to evaluate each statement. Usage examples are:
+
+    :set perl_version 5.008
+    :set perl_version v5.10
+    :set perl_version        # current perl version, $]
+
+Default is to use the current perl version, which works like C<eval "use $];">.
+
+Set to an empty string, as in
+
+    :set perl_version ''
+
+for the behavior of pirl 0.0023 or earlier.
+
 =item :reset
 
 Resets the environment, erasing the symbols created
@@ -663,6 +718,12 @@ must be one of C< ( 'scalar', 'list', 'void',
 
 Changes current evaluation package. Doesn't change if the
 new package name is malformed.
+
+=item B<set_perl_version>
+
+    $sh->set_perl_version($version);
+
+Changes perl version used to evaluate statements.
 
 =item B<set_out>
 

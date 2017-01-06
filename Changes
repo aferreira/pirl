@@ -1,6 +1,9 @@
 Revision history for Perl extension Shell::Perl.
 
 0.0024
+    - every statement is now evalued by default
+      with the current perl version running the shell
+    - new shell command :set perl_version <version>
     - change in CLI options: case-sensitivity & no auto abbreviations
     - pirl -I dir1 -Idir2
     - drop File::Slurp as a prereq
