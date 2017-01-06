@@ -746,9 +746,9 @@ Refactor the code to promote easy customization of features.
 
 =head1 SEE ALSO
 
-This project is hosted at Google Code:
+This project is hosted at Github:
 
-    http://code.google.com/p/iperl/
+    https://github.com/aferreira/pirl
 
 To know about interactive Perl interpreters, there are two
 FAQS contained in L<perlfaq3> which are good starting points.
@@ -773,8 +773,7 @@ There are some quirks with Term::Readline (at least on Windows).
 
 There are more bugs. I am lazy to collect them all and list them now.
 
-Please report bugs via CPAN RT L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Shell-Perl>
-or L<mailto://bugs-Shell-Perl@rt.cpan.org>.
+Please report bugs via Github L<https://github.com/aferreira/pirl/issues>.
 
 =head1 AUTHORS
 
