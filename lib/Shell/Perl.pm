@@ -3,9 +3,6 @@ package Shell::Perl;
 use strict;
 use warnings;
 
-# /Id: Perl.pm 1131 2007-01-27 17:43:35Z me / # don't erase that for now
-# $Id: /iperl/lib/Shell/Perl.pm 2317 2008-03-09T16:22:00.577930Z a.r.ferreira@gmail.com  $
-
 our $VERSION = '0.0023';
 
 use base qw(Class::Accessor); # soon use base qw(Shell::Base);
@@ -427,9 +424,6 @@ sub dump_history {
 ##sub help { shift->print(HELP) }
 ##
 ##sub out { ? }
-
-# svn:keywords Id
-# svn:eol-style LF
 
 __END__
 
