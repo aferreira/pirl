@@ -228,7 +228,7 @@ sub _readline {
 sub _history_file { # XXX
     require Path::Class;
     require File::HomeDir;
-    return Path::Class::file( File::HomeDir->my_home, '.pirl-history' )->stringify;
+    return Path::Class::file( File::HomeDir->my_home, '.pirl-history-xxx' );
 }
 
 sub _read_history { # XXX belongs to Shell::Perl::ReadLine
@@ -236,12 +236,10 @@ sub _read_history { # XXX belongs to Shell::Perl::ReadLine
     my $h    = _history_file;
     #warn "read history from $h\n"; # XXX
     if ( $term->Features->{readHistory} ) {
-        $term->ReadHistory( $h );
+        $term->ReadHistory( "$h" );
     } elsif ( $term->Features->{setHistory} ) {
         if ( -e $h ) {
-            require File::Slurp;
-            my @h = File::Slurp::read_file( $h );
-            chomp @h;
+            my @h = $h->slurp( chomp => 1 );
             $term->SetHistory( @h );
         }
     } else {
@@ -255,11 +253,10 @@ sub _write_history { # XXX belongs to Shell::Perl::ReadLine
    my $h    = _history_file;
    #warn "write history to $h\n"; # XXX
    if ( $term->Features->{writeHistory} ) {
-       $term->WriteHistory( $h );
+       $term->WriteHistory( "$h" );
    } elsif ( $term->Features->{getHistory} ) {
-       require File::Slurp;
-       my @h = map { "$_\n" } $term->GetHistory;
-       File::Slurp::write_file( $h, @h );
+       my @h = $term->GetHistory;
+       $h->spew_lines(\@h);
    } else {
        # warn "Your ReadLine doesn't support getHistory\n";
    }

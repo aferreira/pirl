@@ -16,10 +16,9 @@ WriteMakefile
 		'Class::Accessor' => 0,
 		'File::Basename'  => 0,
 		'File::HomeDir'   => 0,
-		'File::Slurp'     => 0,
 		'Getopt::Long'    => 0,
 		'IPC::Cmd'	      => 0,
-		'Path::Class'     => 0,
+		'Path::Class'     => 0.34,    # spew_lines()
 		'Test::Deep'      => 0,
 		'Test::More'      => 0,
 		'Term::ReadLine'  => 0,
