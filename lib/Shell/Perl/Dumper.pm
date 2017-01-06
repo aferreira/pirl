@@ -351,7 +351,7 @@ Examples of its output:
     --- a
 
 When loading, C<YAML::Syck> is preferred to C<YAML>. If it
-is not avaiable, the C<YAML> module is the second option.
+is not available, the C<YAML> module is the second option.
 
 =head2 Data::Dump::Streamer
 
