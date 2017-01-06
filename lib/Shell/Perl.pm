@@ -19,6 +19,7 @@ Shell::Perl->mk_accessors(qw(
 
 use lib ();
 use Getopt::Long qw(:config no_auto_abbrev no_ignore_case bundling_values);
+use version 0.77;
 
 use Term::ReadLine;
 use Shell::Perl::Dumper;
@@ -198,6 +199,22 @@ sub set_package {
     }
 }
 
+# $err = _check_perl_version($version);
+sub _check_perl_version {
+    my $version = shift;
+    my $ver = eval { version->parse($version) };
+    if ($@) {
+        (my $err = $@) =~ s/at \S+ line \d+.$//;
+        return $err;
+    }
+    # Current perl
+    my $v = $^V || version->parse($]);
+    if ($ver > $v) {
+        return "This is only $v";
+    }
+    return undef; # good
+}
+
 sub set_perl_version {
     my $self = shift;
     my $version = shift;
@@ -209,8 +226,13 @@ sub set_perl_version {
         $self->perl_version('');
     }
     else {
-        # XXX check
-        $self->perl_version($version);
+        my $err = _check_perl_version($version);
+        if ($err) {
+            $self->_warn("bad perl_version ($version): $err");
+        }
+        else {
+            $self->perl_version($version);
+        }
     }
 }
 
