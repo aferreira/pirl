@@ -337,6 +337,7 @@ sub eval {
 
     return eval <<CHUNK;
        package $package; # XXX
+       use $];
        no strict qw(vars subs);
 #line 1
        $exp
