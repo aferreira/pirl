@@ -1,5 +1,10 @@
 Revision history for Perl extension Shell::Perl.
 
+0.0024
+    - change in CLI options: case-sensitivity & no auto abbreviations
+    - pirl -I dir1 -Idir2
+    - drop File::Slurp as a prereq
+
 0.0023  Fri Jan 14:05:00 2014
 	- Update Makefile.PL from 'use 5.006' to 'use 5.008' as per RT#43117. Thanx ANDK.
 	- Fix dates in this file.
