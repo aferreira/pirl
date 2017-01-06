@@ -803,7 +803,7 @@ L<A comparison of various REPLs|http://shadow.cat/blog/matt-s-trout/mstpan-17/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2007–2011 by Adriano R. Ferreira
+Copyright (C) 2007–2017 by Adriano R. Ferreira
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

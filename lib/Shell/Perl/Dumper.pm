@@ -383,22 +383,11 @@ Examples of its output:
 
 =head1 SEE ALSO
 
-    Shell::Perl
-
-=head1 BUGS
-
-Please report bugs via CPAN RT L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Shell-Perl>
-or L<mailto://bugs-Shell-Perl@rt.cpan.org>.
-
-=head1 AUTHORS
-
-Adriano R. Ferreira, E<lt>ferreira@cpan.orgE<gt>
-
-Caio Marcelo, E<lt>cmarcelo@gmail.comE<gt>
+L<Shell::Perl>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2007–2011 by Adriano R. Ferreira
+Copyright (C) 2007–2017 by Adriano R. Ferreira
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
