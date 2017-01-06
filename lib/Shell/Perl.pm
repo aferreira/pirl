@@ -777,9 +777,11 @@ Please report bugs via Github L<https://github.com/aferreira/pirl/issues>.
 
 =head1 AUTHORS
 
-Adriano R. Ferreira, E<lt>ferreira@cpan.orgE<gt>
+Adriano R. Ferreira, E<lt>ferreiraE<64>cpan.orgE<gt>
 
-Caio Marcelo, E<lt>cmarcelo@gmail.comE<gt>
+Caio Marcelo, E<lt>cmarceloE<64>gmail.comE<gt>
+
+Ron Savage, E<lt>ronE<64>savage.net.auE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
