@@ -333,12 +333,16 @@ sub eval {
     my $self = shift;
     my $exp = shift;
     my $package = $self->package;
-    # XXX gotta restore $_, etc.
 
+    my $preamble = join "\n", (
+        "package $package;", # XXX
+        "use $];",
+        "no strict qw(vars subs);",
+    );
+
+    # XXX gotta restore $_, etc.
     return eval <<CHUNK;
-       package $package; # XXX
-       use $];
-       no strict qw(vars subs);
+       $preamble
 #line 1
        $exp
 CHUNK
