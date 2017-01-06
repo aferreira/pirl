@@ -591,7 +591,7 @@ the script identification and exits with 0.
 
 The same as C<run_with_args> but with no code for
 interpreting command-line arguments. It is an instance method,
-so that C<Shell::Perl->run_with_args> is kind of:
+so that C<< Shell::Perl->run_with_args >> is kind of:
 
     Shell::Perl->new->run;
 
