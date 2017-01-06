@@ -5,7 +5,7 @@ use warnings;
 
 # $Id$
 
-our $VERSION = '0.0023';
+our $VERSION = '0.0024';
 
 use base qw(Class::Accessor); # to get a new() for free
 
