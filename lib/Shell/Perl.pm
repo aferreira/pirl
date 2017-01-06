@@ -6,7 +6,9 @@ use warnings;
 our $VERSION = '0.0023';
 
 use base qw(Class::Accessor); # soon use base qw(Shell::Base);
-Shell::Perl->mk_accessors(qw( out_type dumper context package term ornaments )); # XXX use_strict
+Shell::Perl->mk_accessors(qw( out_type dumper context package term ornaments library )); # XXX use_strict
+
+use lib ();
 
 use Term::ReadLine;
 use Shell::Perl::Dumper;
@@ -50,6 +52,12 @@ sub _init {
             $self->set_out($format);
             last
         } # XXX this is not working 100% - and I have no clue about it
+    }
+
+    # Set library paths
+    if ($self->library) {
+        warn "Setting library paths (@{$self->library})\n";
+        lib->import(@{ $self->library });
     }
 
     $self->set_package( __PACKAGE__ . '::sandbox' );
@@ -350,7 +358,7 @@ sub run_with_args {
     if ( @ARGV ) {
         # only require Getopt::Long if there are actually command line arguments
         require Getopt::Long;
-        Getopt::Long::GetOptions( \%options, 'ornaments!', 'version|v' );
+        Getopt::Long::GetOptions( \%options, 'ornaments!', 'version|v', 'library|I=s@' );
     }
 
     my $shell = Shell::Perl->new(%options);

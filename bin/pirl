@@ -29,6 +29,9 @@ pirl - A read-eval-print loop in Perl (see Shell::Perl)
     pirl --version
     pirl -v
 
+    pirl -I dir
+    pirl -Idir1 -Idir2
+
 =head1 EXAMPLE SESSION
 
     $ pirl
@@ -57,6 +60,8 @@ which does it all.
 By now, read the fine details at C<Shell::Perl> documentation.
 
 =head1 OPTIONS
+
+    -I dir - add the given directory to @INC
 
     --ornaments - turn on terminal ornaments (default)
     --noornaments - turn off terminal organments
