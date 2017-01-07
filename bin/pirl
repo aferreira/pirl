@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-our $VERSION = '0.0024';
+our $VERSION = '0.0025';
 
 use Shell::Perl ();
 Shell::Perl->run_with_args;

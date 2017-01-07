@@ -3,7 +3,7 @@ package Shell::Perl::Dumper;
 use strict;
 use warnings;
 
-our $VERSION = '0.0024';
+our $VERSION = '0.0025';
 
 use base qw(Class::Accessor); # to get a new() for free
 
