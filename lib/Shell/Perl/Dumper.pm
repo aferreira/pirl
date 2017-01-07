@@ -383,7 +383,7 @@ Examples of its output:
 
 =head1 SEE ALSO
 
-L<Shell::Perl>
+See L<Shell::Perl> for more documentation.
 
 =head1 COPYRIGHT AND LICENSE
 

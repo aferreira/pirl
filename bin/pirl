@@ -70,17 +70,7 @@ By now, read the fine details at C<Shell::Perl> documentation.
 
 =head1 SEE ALSO
 
-Shell::Perl
-
-=head1 BUGS
-
-Please report bugs via CPAN RT L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Shell-Perl>.
-
-=head1 AUTHOR
-
-Adriano R. Ferreira, E<lt>ferreira@cpan.orgE<gt>
-
-Caio Marcelo, E<lt>cmarcelo@cpan.orgE<gt>
+See L<Shell::Perl> for more documentation.
 
 =head1 COPYRIGHT AND LICENSE
 
