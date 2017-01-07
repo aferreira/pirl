@@ -18,7 +18,7 @@ Shell::Perl->mk_accessors(qw(
 )); # XXX use_strict
 
 use lib ();
-use Getopt::Long qw(:config no_auto_abbrev no_ignore_case bundling_values);
+use Getopt::Long 2.43 qw(:config no_auto_abbrev no_ignore_case bundling_values);
 use version 0.77;
 
 use Term::ReadLine;

@@ -2,6 +2,7 @@ Revision history for Perl extension Shell::Perl.
 
 0.0025  Sat Jan 07 11:59 PST 2017
     - requires version 0.77
+    - requires Getopt::Long 2.43 – bundling_values
 
 0.0024  Fri Jan 06 2017
     - every statement is now evalued by default

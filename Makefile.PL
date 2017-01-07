@@ -16,7 +16,7 @@ WriteMakefile
 		'Class::Accessor' => 0,
 		'File::Basename'  => 0,
 		'File::HomeDir'   => 0,
-		'Getopt::Long'    => 0,
+		'Getopt::Long'    => 2.43,    # bundling_values
 		'IPC::Cmd'	      => 0,
 		'Path::Class'     => 0.34,    # spew_lines()
 		'Test::Deep'      => 0,
