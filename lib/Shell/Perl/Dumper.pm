@@ -3,8 +3,6 @@ package Shell::Perl::Dumper;
 use strict;
 use warnings;
 
-# $Id$
-
 our $VERSION = '0.0024';
 
 use base qw(Class::Accessor); # to get a new() for free
@@ -148,9 +146,6 @@ sub dump_list {
 }
 
 1;
-
-# svn:keywords Id
-# svn:eol-style LF
 
 __END__
 
