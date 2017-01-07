@@ -22,6 +22,7 @@ WriteMakefile
 		'Test::Deep'      => 0,
 		'Test::More'      => 0,
 		'Term::ReadLine'  => 0,
+		'version'         => 0.77,    # parse()
     },
 
 	($] >= 5.005 ? (
