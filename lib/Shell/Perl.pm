@@ -841,6 +841,21 @@ Refactor the code to promote easy customization of features.
 
 =back
 
+=head1 BUGS
+
+It is a one-line evaluator by now.
+
+I don't know what happens if you eval within an eval.
+I don't expect good things to come. (Lorn who prodded
+me about this will going to find it out and then
+I will tell you.)
+
+There are some quirks with Term::Readline (at least on Windows).
+
+There are more bugs. I am lazy to collect them all and list them now.
+
+Please report bugs via Github L<https://github.com/aferreira/pirl/issues>.
+
 =head1 SEE ALSO
 
 This project is hosted at Github:
@@ -857,30 +872,7 @@ Those are
     Is there a Perl shell?
     http://perldoc.perl.org/perlfaq3.html#How-can-I-use-Perl-interactively%3f
 
-=head1 BUGS
-
-It is a one-line evaluator by now.
-
-I don't know what happens if you eval within an eval.
-I don't expect good things to come. (Lorn who prodded
-me about this will going to find it out and then
-I will tell you.)
-
-There are some quirks with Term::Readline (at least on Windows).
-
-There are more bugs. I am lazy to collect them all and list them now.
-
-Please report bugs via Github L<https://github.com/aferreira/pirl/issues>.
-
-=head1 AUTHORS
-
-Adriano R. Ferreira, E<lt>ferreiraE<64>cpan.orgE<gt>
-
-Caio Marcelo, E<lt>cmarceloE<64>gmail.comE<gt>
-
-Ron Savage, E<lt>ronE<64>savage.net.auE<gt>
-
-=head1 SEE ALSO
+Also:
 
 =over 4
 
@@ -897,6 +889,14 @@ L<Reply>
 L<A comparison of various REPLs|http://shadow.cat/blog/matt-s-trout/mstpan-17/>
 
 =back
+
+=head1 AUTHORS
+
+Adriano R. Ferreira, E<lt>ferreiraE<64>cpan.orgE<gt>
+
+Caio Marcelo, E<lt>cmarceloE<64>gmail.comE<gt>
+
+Ron Savage, E<lt>ronE<64>savage.net.auE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
