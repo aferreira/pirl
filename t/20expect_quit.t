@@ -8,6 +8,11 @@ plan skip_all => "Test::Expect required for testing" if $@;
 
 plan( tests => 2*6 );
 
+unless ($ENV{TERM}) {    # help when TERM is not setup
+    diag qq{TERM not set, using "dumb"};
+    $ENV{TERM} = 'dumb';
+}
+
 for my $quit_command ( ':quit', ':q', ':exit', ':x', 'exit', 'quit' ) {
 
     expect_run(
