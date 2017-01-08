@@ -1,6 +1,9 @@
 Revision history for Perl extension Shell::Perl.
 
-0.0025  Sat Jan 07 11:59 PST 2017
+0.0026  Sun Jan 08 12:40 PT 2017
+    - fix t/20expect_quit.t when TERM is not set
+
+0.0025  Sat Jan 07 11:59 PT 2017
     - requires version 0.77
     - requires Getopt::Long 2.43 – bundling_values
 

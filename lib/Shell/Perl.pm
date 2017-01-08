@@ -3,7 +3,7 @@ package Shell::Perl;
 use strict;
 use warnings;
 
-our $VERSION = '0.0025';
+our $VERSION = '0.0026';
 
 use base qw(Class::Accessor); # soon use base qw(Shell::Base);
 Shell::Perl->mk_accessors(qw(
