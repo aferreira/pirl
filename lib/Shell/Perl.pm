@@ -196,7 +196,8 @@ sub set_package {
         $self->package($package);
 
         no strict 'refs';
-        *{ "${package}::quit" } = sub { $self->quit };
+        *{ "${package}::quit" } = *{ "${package}::exit" } = sub { $self->{quitting} = 1 };
+
     } else {
         $self->_warn("bad package name $package");
     }
@@ -367,6 +368,8 @@ sub run {
 
     print "Welcome to the Perl shell. Type ':help' for more information\n\n";
 
+    local $self->{quitting} = 0;
+
     REPL: while ( defined ($_ = $self->_readline) ) {
 
         # trim
@@ -405,6 +408,7 @@ sub run {
         } else {
             # XXX should not happen
         }
+        last if $self->{quitting};
 
     }
     return $self->quit;
