@@ -15,6 +15,7 @@ Shell::Perl->mk_accessors(qw(
     term
     ornaments
     library
+    on_quit
 )); # XXX use_strict
 
 use lib ();
@@ -34,6 +35,7 @@ sub new {
     my $self = shift;
     my $sh = $self->SUPER::new({
                            context => 'list', # print context
+                           on_quit => 'exit',
                            perl_version => $],
                            @_ });
     $sh->_init;
@@ -74,6 +76,7 @@ sub _init {
 
     $self->set_package( __PACKAGE__ . '::sandbox' );
 
+    $self->_set_on_quit( $self->on_quit );
 }
 
 sub _shell_name {
@@ -176,12 +179,12 @@ sub _ctx {
 
 sub set_ctx {
     my $self    = shift;
-    my $context = _ctx shift;
+    my $context = _ctx $_[0];
 
     if ($context) {
         $self->context($context);
     } else {
-        $self->_warn("unknown context $context");
+        $self->_warn("unknown context $_[0]");
     }
 }
 
@@ -193,9 +196,40 @@ sub set_package {
         $self->package($package);
 
         no strict 'refs';
-        *{ "${package}::quit" } = sub { $self->quit };
+        *{ "${package}::quit" } = *{ "${package}::exit" } = sub { $self->{quitting} = 1 };
+
     } else {
         $self->_warn("bad package name $package");
+    }
+}
+
+my %on_quit = (
+    'exit'   => sub { exit 0 },
+    'return' => sub {},
+);
+
+sub _quit_handler {
+    my $handler = shift;
+
+    if (exists $on_quit{$handler}) {
+        return $on_quit{$handler};
+    }
+    elsif (ref $handler eq 'CODE') {
+        return $handler;
+    }
+    return undef;
+}
+
+sub _set_on_quit {
+    my $self    = shift;
+    my $handler = _quit_handler($_[0]);
+
+    if ($handler) {
+        $self->on_quit($handler);
+    }
+    else {
+        $self->_warn("bad on_quit handler $_[0]");
+        $self->on_quit($on_quit{'exit'});
     }
 }
 
@@ -334,6 +368,8 @@ sub run {
 
     print "Welcome to the Perl shell. Type ':help' for more information\n\n";
 
+    local $self->{quitting} = 0;
+
     REPL: while ( defined ($_ = $self->_readline) ) {
 
         # trim
@@ -372,9 +408,10 @@ sub run {
         } else {
             # XXX should not happen
         }
+        last if $self->{quitting};
 
     }
-    $self->quit;
+    return $self->quit;
 
 }
 
@@ -413,7 +450,7 @@ sub quit {
     my $self = shift;
     _write_history( $self->term );
     $self->print( "Bye.\n" ); # XXX
-    exit;
+    return $self->on_quit->();
 }
 
 sub run_with_args {
