@@ -15,6 +15,7 @@ Shell::Perl->mk_accessors(qw(
     term
     ornaments
     library
+    on_quit
 )); # XXX use_strict
 
 use lib ();
@@ -34,6 +35,7 @@ sub new {
     my $self = shift;
     my $sh = $self->SUPER::new({
                            context => 'list', # print context
+                           on_quit => 'exit',
                            perl_version => $],
                            @_ });
     $sh->_init;
@@ -74,6 +76,7 @@ sub _init {
 
     $self->set_package( __PACKAGE__ . '::sandbox' );
 
+    $self->_set_on_quit( $self->on_quit );
 }
 
 sub _shell_name {
@@ -196,6 +199,36 @@ sub set_package {
         *{ "${package}::quit" } = sub { $self->quit };
     } else {
         $self->_warn("bad package name $package");
+    }
+}
+
+my %on_quit = (
+    'exit'   => sub { exit 0 },
+    'return' => sub {},
+);
+
+sub _quit_handler {
+    my $handler = shift;
+
+    if (exists $on_quit{$handler}) {
+        return $on_quit{$handler};
+    }
+    elsif (ref $handler eq 'CODE') {
+        return $handler;
+    }
+    return undef;
+}
+
+sub _set_on_quit {
+    my $self    = shift;
+    my $handler = _quit_handler(shift);
+
+    if ($handler) {
+        $self->on_quit($handler);
+    }
+    else {
+        $self->_warn("bad on_quit handler $handler");
+        $self->on_quit($on_quit{'exit'});
     }
 }
 
@@ -374,7 +407,7 @@ sub run {
         }
 
     }
-    $self->quit;
+    return $self->quit;
 
 }
 
@@ -413,7 +446,7 @@ sub quit {
     my $self = shift;
     _write_history( $self->term );
     $self->print( "Bye.\n" ); # XXX
-    exit;
+    return $self->on_quit->();
 }
 
 sub run_with_args {
