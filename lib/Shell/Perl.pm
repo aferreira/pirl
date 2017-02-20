@@ -179,12 +179,12 @@ sub _ctx {
 
 sub set_ctx {
     my $self    = shift;
-    my $context = _ctx shift;
+    my $context = _ctx $_[0];
 
     if ($context) {
         $self->context($context);
     } else {
-        $self->_warn("unknown context $context");
+        $self->_warn("unknown context $_[0]");
     }
 }
 
@@ -222,13 +222,13 @@ sub _quit_handler {
 
 sub _set_on_quit {
     my $self    = shift;
-    my $handler = _quit_handler(shift);
+    my $handler = _quit_handler($_[0]);
 
     if ($handler) {
         $self->on_quit($handler);
     }
     else {
-        $self->_warn("bad on_quit handler $handler");
+        $self->_warn("bad on_quit handler $_[0]");
         $self->on_quit($on_quit{'exit'});
     }
 }
