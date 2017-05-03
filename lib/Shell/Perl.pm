@@ -882,11 +882,6 @@ Refactor the code to promote easy customization of features.
 
 It is a one-line evaluator by now.
 
-I don't know what happens if you eval within an eval.
-I don't expect good things to come. (Lorn who prodded
-me about this will going to find it out and then
-I will tell you.)
-
 There are some quirks with Term::Readline (at least on Windows).
 
 There are more bugs. I am lazy to collect them all and list them now.
