@@ -1,5 +1,8 @@
 Revision history for Perl extension Shell::Perl.
 
+0.004   Tue May 02 17:19 PT 2017
+    - only set ornaments if term supports it
+
 0.003   Mon Feb 20 12:12 PT 2017
     - exit & quit works as :exit & :quit at top level
     - on_quit attribute https://github.com/aferreira/pirl/issues/4

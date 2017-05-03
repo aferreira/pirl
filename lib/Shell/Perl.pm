@@ -355,6 +355,7 @@ sub _new_term {
     my $self = shift;
     my $name = shift;
     my $term = Term::ReadLine->new( $name );
+    $term->ornaments($self->ornaments) if $term->Features->{ornaments};
     _read_history( $term );
     return $term;
 }
@@ -363,7 +364,6 @@ sub run {
     my $self = shift;
     my $shell_name = _shell_name;
     $self->term( my $term = $self->_new_term( $shell_name ) );
-    $term->ornaments($self->ornaments); # XXX
     my $prompt = "$shell_name > ";
 
     print "Welcome to the Perl shell. Type ':help' for more information\n\n";
