@@ -882,8 +882,6 @@ Refactor the code to promote easy customization of features.
 
 It is a one-line evaluator by now.
 
-There are some quirks with Term::Readline (at least on Windows).
-
 There are more bugs. I am lazy to collect them all and list them now.
 
 Please report bugs via Github L<https://github.com/aferreira/pirl/issues>.
